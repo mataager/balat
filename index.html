@@ -260,7 +260,8 @@
             <a href="#home">Home</a>
             <a href="#details">Details</a>
             <a href="#about">About</a>
-
+        </nav>
+        <div class="header-icen-div">
             <a>
                 <button class="nav-action-btn" onclick="changeFrameSrc('Cart.html')">
                     <ion-icon name="bag-outline" aria-hidden="true" role="img" class="md hydrated"></ion-icon>
@@ -269,7 +270,16 @@
                     <data id="cartItemCount" class="nav-action-badge" aria-hidden="true">0</data>
                 </button>
             </a>
-        </nav>
+            <a><button class="nav-action-btn" onclick="changeFrameSrc('account.html')">
+                    <ion-icon name="person-outline" role="img" class="md hydrated"
+                        aria-label="person outline"></ion-icon>
+                    <span class="nav-action-text hidden">Account</span>
+                </button>
+            </a>
+        </div>
+
+
+
     </header>
 
     <main class="p-20">
@@ -1248,9 +1258,9 @@
 
                         <form action="" class="newsletter-form">
                             <input type="email" name="email" required="" placeholder="Email Address"
-                                class="newsletter-input">
+                                class="newsletter-input border-r5">
 
-                            <button type="submit" class="btn2 btn-primary">Subscribe</button>
+                            <button type="submit" class="btn2 btn-primary ">Subscribe</button>
                         </form>
 
                     </div>

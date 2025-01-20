@@ -207,13 +207,14 @@ body {
 }
 
 .btn2 {
-  background: #000;
-  color: var(--color, var(--white));
+  background: #727D73;
+  color: white;
   font-size: var(--fs-5);
   display: flex;
   align-items: center;
   gap: 5px;
   padding: 14px 25px;
+  border-radius: 0px 5px 5px 0px;
 }
 
 .btn2:hover {
@@ -300,7 +301,15 @@ body {
   min-width: 140px !important;
   min-height: 140px !important;
   max-height: 290px !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.card-banner:hover {
+  transform: scale(1.01);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+
 
 .image-contain {
   max-height: 300px;
@@ -400,6 +409,11 @@ body {
 .card-content {
   padding: 0px 15px 0;
   text-align: center;
+  margin-top: 13px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
 }
 
 .card-cat {
@@ -421,6 +435,7 @@ body {
 
 .product-card .card-title {
   margin-bottom: 12px;
+  margin-top: 5px;
 }
 
 .card-title-Category {
@@ -492,6 +507,12 @@ body {
 
 .header.active {
   box-shadow: 0 2px 10px hsla(0, 0%, 0%, 0.1);
+}
+
+.header-icen-div {
+  display: flex;
+  width: 70px;
+  justify-content: space-around;
 }
 
 .header .container {
@@ -1646,9 +1667,6 @@ a.footer-link:is(:hover, :focus) {
     height: 15px !important;
   }
 
-  .color-option2:hover {
-    border: 1px solid #f5f5f5 !important;
-  }
 
   .product-card:is(:hover, :focus) .card-action-list {
     right: 20px;
@@ -2161,10 +2179,6 @@ select {
   margin-bottom: 1rem;
 }
 
-.color-options {
-  display: flex;
-  gap: 0.5rem;
-}
 
 .color-option {
   width: 30px;
@@ -2193,17 +2207,17 @@ select {
 }
 
 .color-option2 {
+  border: .5px solid rgba(0, 0, 0, 0.06);
   width: 20px;
   height: 20px;
-  border-radius: 50%;
+  border-radius: 10%;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 2, 0.5);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
+
 }
 
-/* .color-option2:hover {
-  border: 2px solid #000000;
-} */
+
 
 .Add-to-Cart,
 .close-btn {
@@ -2419,6 +2433,10 @@ select {
 .box-with-shadow {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   /* Adjust values as needed */
+}
+
+.border-r5 {
+  border-radius: 5px;
 }
 
 .ml-5 {
@@ -2649,8 +2667,10 @@ select {
   background-color: #727d73cc;
 }
 
+
 .color-option2:hover {
-  border: 1px solid #f5f5f5 !important;
+  transform: scale(1.1);
+  /* Corrected the syntax for scaling */
 }
 
 
@@ -3483,6 +3503,9 @@ a {
 .color-options {
   display: flex;
   gap: 10px;
+  border-radius: 10px !important;
+  top: -28px;
+  position: absolute;
 }
 
 .color-circle {
@@ -4871,6 +4894,7 @@ th {
 
 
 
+
 .shipping-status {
   color: #333333 !important;
   font-size: small;
@@ -4988,12 +5012,14 @@ nav a {
 
 /* Buttons styling */
 .quantity-control button {
+  line-height: 0px;
+  height: 40px;
   background-color: #f0f0f0;
   border: 1px solid #ccc;
   color: #333;
-  font-size: 1.2rem;
+  font-size: 2.1rem;
   font-weight: bold;
-  padding: 5px 12px;
+  padding: 10 12px;
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -5010,7 +5036,7 @@ nav a {
   width: 150px;
   height: 40px;
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.8rem;
   border: 1px solid #ccc;
   border-radius: 5px;
   outline: none;

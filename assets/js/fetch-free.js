@@ -1,41 +1,3 @@
-// function setupHoverEffect(productItem) {
-//   // Get the images inside the current product item
-//   var images = productItem.querySelectorAll(".image-contain");
-
-//   // Function to show the second image
-//   function showSecondImage() {
-//     images[0].style.display = "none";
-//     images[1].style.display = "block";
-//   }
-
-//   // Function to show the first image
-//   function showFirstImage() {
-//     images[0].style.display = "block";
-//     images[1].style.display = "none";
-//   }
-
-//   // Add event listener for mouseenter (hover in)
-//   productItem.addEventListener("mouseenter", showSecondImage);
-
-//   // Add event listener for mouseleave (hover out)
-//   productItem.addEventListener("mouseleave", showFirstImage);
-
-//   // Add event listener for touchstart (tap in)
-//   productItem.addEventListener("touchstart", function () {
-//     // Prevent the touch event from triggering a click
-//     event.preventDefault();
-//     showSecondImage();
-//   });
-
-//   // Add event listener for touchend (tap out)
-//   productItem.addEventListener("touchend", function () {
-//     showFirstImage();
-//   });
-
-//   // Add event listener for touchcancel (in case the touch action is interrupted)
-//   productItem.addEventListener("touchcancel", showFirstImage);
-// }
-
 function fetchAndRenderProducts() {
   document.getElementById("preloader").style.display = "flex";
   fetch(`${url}/Stores/${uid}/Products.json`)
@@ -107,31 +69,11 @@ function fetchAndRenderProducts() {
           // Adjust this part according to your product card structure
           productCard.innerHTML = `
             <div class="product-card" tabindex="0">
-              <figure class="card-banner">
+              <figure class="card-banner" onclick="productDetails('${key}')">
                 <img src="${product["product-photo"]}" width="312" height="350" alt=""class="image-contain" id="swipe1">
                 <img src="${product["product-photo2"]}" width="312" height="350" alt="" id="swipe2" class="image-contain" style="display: none;">
                 <div class="card-badge">New</div>
                 ${bestSellerHTML}
-                <ul class="card-action-list">
-                  <li class="card-action-item">
-                    <button class="card-action-btn add-to-cart-btn" aria-labelledby="card-label-1" data-product-id="${key}">
-                      <ion-icon name="cart-outline" role="img" class="md hydrated" aria-label="cart outline"></ion-icon>
-                    </button>
-                    <div class="card-action-tooltip" id="card-label-1">Add to Cart</div>
-                  </li>
-                  <li class="card-action-item" onclick="productDetails('${key}')">
-                    <button class="card-action-btn" aria-labelledby="card-label-3">
-                      <ion-icon name="eye-outline" role="img" class="md hydrated" aria-label="eye outline"></ion-icon>
-                    </button>
-                    <div class="card-action-tooltip" id="card-label-3">Quick View</div>
-                  </li>
-                  <li class="card-action-item" onclick="addfavouriteproduct('${key}')">
-              <button class="card-action-btn" aria-labelledby="card-label-3">
-                <ion-icon name="heart-outline" role="img" class="md hydrated" aria-label="heart-outline"></ion-icon>
-              </button>
-              <div class="card-action-tooltip" id="card-label-3">Add to Favourite</div>
-            </li>
-                </ul>
               </figure>
               <div class="card-content mt-10">
                 <h3 class="h3 card-title mb-7" onclick="productDetails('${key}')">
@@ -151,7 +93,7 @@ function fetchAndRenderProducts() {
         });
 
         // Limit the number of products to be displayed in the main product overview to 12
-        const limitedData = shuffledData.slice(0, 12);
+        const limitedData = shuffledData.slice(0, 50);
 
         // Iterate through the limited data and render each product in the product overview
         limitedData.forEach(([key, product]) => {
@@ -179,7 +121,7 @@ function fetchAndRenderProducts() {
 
           displayColors.forEach((color) => {
             const colorValue = colorValues[color] || "#000000"; // Default color if not found
-            colorOptionsHTML += `<div class="color-option2 " style="background-color: ${colorValue};" data-color-name="${color}"></div>`;
+            colorOptionsHTML += `<div class="color-option2 " style="background-color: ${colorValue};" data-color-name="${color}" onclick="productDetails('${key}')"></div>`;
           });
 
           if (colorsArray.length > 3) {
@@ -218,7 +160,7 @@ function fetchAndRenderProducts() {
           // Construct product card HTML (your existing logic)
           productCard.innerHTML = `
             <div class="product-card" tabindex="0">
-              <figure class="card-banner">
+              <figure class="card-banner" onclick="productDetails('${key}')">
                 <img src="${
                   product["product-photo"]
                 }" width="312" height="350" alt="" class="image-contain" id="swipe1">
@@ -232,26 +174,7 @@ function fetchAndRenderProducts() {
                 }
                 ${bestSellerHTML}
                
-                <ul class="card-action-list">
-                  <li class="card-action-item">
-                    <button class="card-action-btn add-to-cart-btn" aria-labelledby="card-label-1" data-product-id="${key}">
-                      <ion-icon name="cart-outline" role="img" class="md hydrated" aria-label="cart outline"></ion-icon>
-                    </button>
-                    <div class="card-action-tooltip" id="card-label-1">Add to Cart</div>
-                  </li>
-                  <li class="card-action-item" onclick="productDetails('${key}')">
-                    <button class="card-action-btn" aria-labelledby="card-label-3">
-                      <ion-icon name="eye-outline" role="img" class="md hydrated" aria-label="eye outline"></ion-icon>
-                    </button>
-                    <div class="card-action-tooltip" id="card-label-3">Quick View</div>
-                  </li>
-                  <li class="card-action-item" onclick="addfavouriteproduct('${key}')">
-              <button class="card-action-btn" aria-labelledby="card-label-3">
-                <ion-icon name="heart-outline" role="img" class="md hydrated" aria-label="heart-outline"></ion-icon>
-              </button>
-              <div class="card-action-tooltip" id="card-label-3">Add to Favourite</div>
-            </li>
-                </ul>
+                
               </figure>
               <div class="card-content">
                 ${colorOptionsContainer}
@@ -351,31 +274,12 @@ function renderSaleItems(products, saleContainer) {
 
       productCard.innerHTML = `
         <div class="product-card" tabindex="0">
-          <figure class="card-banner">
+          <figure class="card-banner" onclick="productDetails('${key}')">
             <img src="${product["product-photo"]}" width="312" height="350" alt="" class="image-contain" id="swipe1">
             <img src="${product["product-photo2"]}" width="312" height="350" id="swipe2" class="image-contain" style="display: none;">
             <div class="card-badge"> -${saleAmount}%</div>
             ${bestSellerHTML}
-            <ul class="card-action-list">
-              <li class="card-action-item">
-                <button class="card-action-btn add-to-cart-btn" aria-labelledby="card-label-1" data-product-id="${key}">
-                  <ion-icon name="cart-outline" role="img" class="md hydrated" aria-label="cart outline"></ion-icon>
-                </button>
-                <div class="card-action-tooltip" id="card-label-1">Add to Cart</div>
-              </li>
-              <li class="card-action-item" onclick="productDetails('${key}')">
-                <button class="card-action-btn" aria-labelledby="card-label-3">
-                  <ion-icon name="eye-outline" role="img" class="md hydrated" aria-label="eye outline"></ion-icon>
-                </button>
-                <div class="card-action-tooltip" id="card-label-3">Quick View</div>
-              </li>
-              <li class="card-action-item" onclick="addfavouriteproduct('${key}')">
-              <button class="card-action-btn" aria-labelledby="card-label-3">
-                <ion-icon name="heart-outline" role="img" class="md hydrated" aria-label="heart-outline"></ion-icon>
-              </button>
-              <div class="card-action-tooltip" id="card-label-3">Add to Favourite</div>
-            </li>
-            </ul>
+            
           </figure>
           <div class="card-content mt-10">
             <h3 class="h3 card-title mb-7" onclick="productDetails('${key}')">
