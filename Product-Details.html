@@ -239,6 +239,7 @@
                                         const productSize = document.getElementById("product-Size").innerText;
                                         const productColor = document.getElementById("product-color").innerText;
                                         const productID = document.getElementById("productID").innerText;
+                                        const quantity = document.getElementById("quantity").value;
 
                                         // Get the reference to the img element
                                         const productImage = document.getElementById('productImage');
@@ -900,20 +901,72 @@
                     productPriceElement.innerText = `${updatedPrice.toFixed(2)} EGP`; // Update with 2 decimal points and add currency
                 }
 
-                // Add event listeners for the decrease and increase buttons
-                decreaseBtn.addEventListener('click', () => {
-                    let currentQty = parseInt(quantityInput.value);
-                    if (currentQty > 1) {
-                        quantityInput.value = currentQty - 1;
-                        updateProductPrice(); // Update price on decrease
-                    }
-                });
+                // // Add event listeners for the decrease and increase buttons
+                // decreaseBtn.addEventListener('click', () => {
+                //     let currentQty = parseInt(quantityInput.value);
+                //     if (currentQty > 1) {
+                //         quantityInput.value = currentQty - 1;
+                //         updateProductPrice(); // Update price on decrease
+                //     }
+                // });
 
-                increaseBtn.addEventListener('click', () => {
-                    let currentQty = parseInt(quantityInput.value);
-                    quantityInput.value = currentQty + 1;
-                    updateProductPrice(); // Update price on increase
-                });
+                // increaseBtn.addEventListener('click', () => {
+                //     let currentQty = parseInt(quantityInput.value);
+                //     quantityInput.value = currentQty + 1;
+                //     updateProductPrice(); // Update price on increase
+                // });
+
+                // // Prevent manual entry of invalid values
+                // quantityInput.addEventListener('input', () => {
+                //     let value = parseInt(quantityInput.value);
+                //     if (isNaN(value) || value < 1) {
+                //         quantityInput.value = 1; // Reset to 1 if the value is invalid
+                //     }
+                //     updateProductPrice(); // Update price on manual entry
+                // });
+
+                // Function to handle auto-increment or decrement
+                function handleHold(action) {
+                    let intervalId;
+                    const repeatAction = () => {
+                        let currentQty = parseInt(quantityInput.value);
+                        if (action === 'decrease' && currentQty > 1) {
+                            quantityInput.value = currentQty - 1;
+                        } else if (action === 'increase') {
+                            quantityInput.value = currentQty + 1;
+                        }
+                        updateProductPrice();
+                    };
+
+                    // Start the interval when holding the button
+                    const startHold = () => {
+                        repeatAction(); // Execute immediately on press
+                        intervalId = setInterval(repeatAction, 100); // Execute repeatedly
+                    };
+
+                    // Clear the interval when mouse or touch is released
+                    const stopHold = () => {
+                        clearInterval(intervalId);
+                    };
+
+                    return { startHold, stopHold };
+                }
+
+                // Attach event listeners for decrease button
+                const decreaseHandlers = handleHold('decrease');
+                decreaseBtn.addEventListener('mousedown', decreaseHandlers.startHold);
+                decreaseBtn.addEventListener('mouseup', decreaseHandlers.stopHold);
+                decreaseBtn.addEventListener('mouseleave', decreaseHandlers.stopHold); // Stop if the mouse leaves the button
+                decreaseBtn.addEventListener('touchstart', decreaseHandlers.startHold);
+                decreaseBtn.addEventListener('touchend', decreaseHandlers.stopHold);
+
+                // Attach event listeners for increase button
+                const increaseHandlers = handleHold('increase');
+                increaseBtn.addEventListener('mousedown', increaseHandlers.startHold);
+                increaseBtn.addEventListener('mouseup', increaseHandlers.stopHold);
+                increaseBtn.addEventListener('mouseleave', increaseHandlers.stopHold);
+                increaseBtn.addEventListener('touchstart', increaseHandlers.startHold);
+                increaseBtn.addEventListener('touchend', increaseHandlers.stopHold);
 
                 // Prevent manual entry of invalid values
                 quantityInput.addEventListener('input', () => {
