@@ -125,8 +125,9 @@
                                     <div id="productPrice" class=""></div>
                                     <p class="per-type">Per Meter</p>
                                 </div>
-
-
+                                <div class="flex align-items m-5 mb-10">
+                                    <div id="productPriceall" class=""></div>
+                                </div>
                                 <div class="size m-5 mb-10 ">
                                     <label class="m-5 flex pb-7" for="product-Size">
                                         Measurement:<p id="product-Size"> </p>
@@ -236,6 +237,7 @@
                                         const title = document.getElementById("productTitle").innerText;
                                         const brandName = document.getElementById("BrandName").innerText;
                                         const productPrice = document.getElementById("productPrice").innerText;
+                                        const productPriceall = document.getElementById('productPriceall').innerText;
                                         const productSize = document.getElementById("product-Size").innerText;
                                         const productColor = document.getElementById("product-color").innerText;
                                         const productID = document.getElementById("productID").innerText;
@@ -245,13 +247,16 @@
                                         const productImage = document.getElementById('productImage');
                                         const srcValue = productImage.getAttribute('src');
 
+                                        // Determine the price to use
+                                        const finalPrice = productPriceall.trim() === '' ? productPrice : productPriceall;
+
                                         const newItem = {
                                             id: productID,
                                             brand: brandName,
                                             title: title,
                                             productSize: productSize,
                                             productColor: productColor,
-                                            price: productPrice,
+                                            price: finalPrice,
                                             photourl: srcValue,
                                             quantity: 1 // Initialize quantity
                                         };
@@ -886,19 +891,16 @@
                 const decreaseBtn = document.getElementById('decrease-qty');
                 const increaseBtn = document.getElementById('increase-qty');
                 const quantityInput = document.getElementById('quantity');
+                const productPriceall = document.getElementById('productPriceall');
 
 
                 // Get the inner text, remove non-numeric characters, and convert to a float
                 const basePrice = parseFloat(salePrice);
-
-
-                console.log(basePrice); // Logs 840 as a float
-
                 // Update the displayed product price based on the quantity
                 function updateProductPrice() {
                     const currentQty = parseInt(quantityInput.value);
                     const updatedPrice = basePrice * currentQty;
-                    productPriceElement.innerText = `${updatedPrice.toFixed(2)} EGP`; // Update with 2 decimal points and add currency
+                    productPriceall.innerText = `${updatedPrice.toFixed(2)} EGP`; // Update with 2 decimal points and add currency
                 }
 
                 // // Add event listeners for the decrease and increase buttons
