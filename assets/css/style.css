@@ -1722,13 +1722,15 @@ a.footer-link:is(:hover, :focus) {
     border: none;
   } */
   .intro {
-    padding: 30px 10px !important;
+    padding: 18px 10px !important;
     border-radius: 20px !important;
     position: relative !important;
   }
 
   .carousel-container {
     height: 60vh !important;
+    margin: 150px 10px 10px 10px !important;
+
   }
 
   .number1-hint {}

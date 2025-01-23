@@ -14,6 +14,7 @@
         }
 
         .number1-hint {
+            line-height: 1;
             border: 3px solid;
             z-index: 20;
             padding: 5px;
@@ -51,8 +52,11 @@
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
 
-        h1 {
-            font-size: 2.5rem;
+        h1,
+        h2,
+        h3,
+        h4 {
+
             color: #333;
             font-weight: bold;
             margin-bottom: 20px;
@@ -224,6 +228,18 @@
             display: flex;
             justify-content: space-between;
         }
+
+        .lh-1 {
+            line-height: 1.1em;
+        }
+
+        .panner-title {
+            font-size: large;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.4em;
+        }
     </style>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -255,7 +271,9 @@
 
 
     <header>
-        <div class="logo">Project 02</div>
+        <div class="logo"><a href="#" class="logo">
+                <img src="./assets/images/iicon.svg" width="160" height="50" alt="">
+            </a></div>
         <nav class="flex align-items">
             <a href="#home">Home</a>
             <a href="#details">Details</a>
@@ -285,14 +303,16 @@
     <main class="p-20">
         <section class="banner radius10">
             <div class="intro">
-                <h1 class="m-20">
-                    <span class="number number1-hint">01</span> Discover the Modern
-                    <span class="highlight">Architecture</span> with Our AI Art Generator.
-                </h1>
-                <p class="c3d3d3d m-5">
-                    The power and bundles of collection where you choose from a variety of styles, colors, and themes.
+                <p class="lh-1 panner-title">
+                    <span class="number number1-hint">#1</span> Elevate Your Space with
+                    <span class="highlight">Exquisite Flooring Solutions</span> from Our Premier Store.
                 </p>
-                <button class="community-btn">Show All Items</button>
+                <p class="c3d3d3d m-5">
+                    Explore our curated collection of luxurious ceramics, stunning marble, and elegant tiles, designed
+                    to
+                    transform your interiors with style and sophistication.
+                </p>
+                <button class="community-btn" onclick="scrollToProducts()">Browse Our Collection</button>
             </div>
         </section>
         <div class="carousel-container">
@@ -979,17 +999,12 @@
 
 
 
-                    <ul class="product-overview">
-
+                    <ul class="product-overview" id="product-overview">
 
 
                     </ul>
 
-                    <div class="flex center align-items m-50">
-                        <button id="more_product" class="cus-btn" onclick="more_product()">Show All
-                            <i class="bi bi-plus"></i>
-                        </button>
-                    </div>
+
 
 
 
@@ -1002,6 +1017,7 @@
                 <div class="about-content">
                     <div class="text-section">
                         <h2>About Us</h2>
+                        <img src="./assets/images/iicon.svg">
                         <p>
                             We are a forward-thinking company dedicated to pushing the boundaries of creativity and
                             technology. Our
@@ -1350,6 +1366,12 @@
                 removeActiveClass();
             });
         });
+        function scrollToProducts() {
+            const element = document.getElementById('product-overview');
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
     </script>
     <script src="./assets/js/update-cart-amont.js"></script>
     <script src="./assets/js/route.js"></script>
