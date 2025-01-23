@@ -17,7 +17,7 @@
             line-height: 1;
             border: 3px solid;
             z-index: 20;
-            padding: 5px;
+            padding: 15px;
             border-radius: 50%;
             background: white;
             left: -7px;
@@ -252,6 +252,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&amp;family=Roboto:wght@400;500;700&amp;display=swap"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/ionicons@5.5.2/dist/css/ionicons.min.css">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule="" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
@@ -271,14 +273,10 @@
 
 
     <header>
-        <div class="logo"><a href="#" class="logo">
+        <div class="logo"><a href="#" class="logo" onclick="changeFrameSrc('index.html')">
                 <img src="./assets/images/iicon.svg" width="160" height="50" alt="">
             </a></div>
-        <nav class="flex align-items">
-            <a href="#home">Home</a>
-            <a href="#details">Details</a>
-            <a href="#about">About</a>
-        </nav>
+
         <div class="header-icen-div">
             <a>
                 <button class="nav-action-btn" onclick="changeFrameSrc('Cart.html')">
@@ -307,7 +305,7 @@
                     <span class="number number1-hint">#1</span> Elevate Your Space with
                     <span class="highlight">Exquisite Flooring Solutions</span> from Our Premier Store.
                 </p>
-                <p class="c3d3d3d m-5">
+                <p class="c3d3d3d m-5 lh-1-5em">
                     Explore our curated collection of luxurious ceramics, stunning marble, and elegant tiles, designed
                     to
                     transform your interiors with style and sophistication.
@@ -1017,8 +1015,9 @@
                 <div class="about-content">
                     <div class="text-section">
                         <h2>About Us</h2>
-                        <img src="./assets/images/.svg">
-                        <p>
+                        <img width="100px" class="m30-0"
+                            src="https://res.cloudinary.com/dqaz3mxb4/image/upload/v1737650368/gvvwj1ecqhk54cqerrm0.jpg">
+                        <p class="lh-1-5em">
                             We are a forward-thinking company dedicated to pushing the boundaries of creativity and
                             technology. Our
                             mission is to bring modern architectural designs and innovative AI art generation to the

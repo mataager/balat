@@ -1,11 +1,11 @@
 const url = "https://matager-f1f00-default-rtdb.firebaseio.com";
 const storeurl = "https://matager-f1f00-default-rtdb.firebaseio.com";
-const storename = "Peacock";
-const uid = "R0jsmpHvS5U7RkRyd6Rj7YbSJvo1";
-const storeuid = "R0jsmpHvS5U7RkRyd6Rj7YbSJvo1";
-const storePhoneNum = "+20 122 838 3723";
-const storePhoneNum2 = "";
-const storeEmail = "Peacock.original.shop@gmail.com";
+const storename = "IDEAL STONE";
+const uid = "3eiRql40mBMjgcv83jX8x3JUaRh1";
+const storeuid = "3eiRql40mBMjgcv83jX8x3JUaRh1";
+const storePhoneNum = "+20 109 817 6491";
+const storePhoneNum2 = "+20 103 388 6447";
+const storeEmail = "Idealstonecompany@gmail.com";
 const storeGender = [];
 const storeType = "clothing"; // clothing or footwear
 const freeshipping = "2000";

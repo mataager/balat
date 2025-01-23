@@ -151,7 +151,7 @@ function fetchAndRenderProducts() {
           }
           // Check if the product is a best seller
           const bestSellerHTML = product["bestseller"]
-            ? `<div class="best-seller" id="best-seller">bestseller<i class="bi bi-lightning-charge"></i></div>`
+            ? `<div class="best-seller" id="best-seller"><i class="bi bi-lightning-charge"></i></div>`
             : "";
           //
           const salePrice = calculateSalePrice(originalPrice, saleAmount);
@@ -299,6 +299,8 @@ function renderSaleItems(products, saleContainer) {
       setupHoverEffect(productCard);
 
       saleItemCount++;
+      document.getElementById("preloader").style.display = "none";
+    } else {
       document.getElementById("preloader").style.display = "none";
     }
   });

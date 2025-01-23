@@ -116,6 +116,13 @@ html {
   scroll-behavior: smooth;
 }
 
+p[lang="ar"],
+h2[lang="ar"] {
+  /* font-family: 'Noto Sans Arabic', var(--ff-josefin-sans) !important; */
+  font-family: system-ui;
+  /* Font for Arabic text */
+}
+
 body {
   background: var(--white);
   font-size: 1.6rem;
@@ -436,6 +443,7 @@ body {
 .product-card .card-title {
   margin-bottom: 12px;
   margin-top: 5px;
+  font-family: 'Noto Sans Arabic';
 }
 
 .card-title-Category {
@@ -512,7 +520,7 @@ body {
 .header-icen-div {
   display: flex;
   width: 70px;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .header .container {
@@ -1733,7 +1741,9 @@ a.footer-link:is(:hover, :focus) {
 
   }
 
-  .number1-hint {}
+  .number1-hint {
+    padding: 5px;
+  }
 }
 
 #cart-items h5 {
@@ -1850,6 +1860,10 @@ a.footer-link:is(:hover, :focus) {
 
 .m-5 {
   margin: 5px;
+}
+
+.m30-0 {
+  margin: 30px 0px 30px 0px;
 }
 
 .m-20-0-0-5 {
@@ -4894,12 +4908,16 @@ th {
   color: white;
   bottom: 0;
   position: absolute;
-  background: black;
+  background: #727D73;
   padding: 5px 10px;
   display: flex;
   align-items: center;
   gap: 5px;
   border-radius: 0px 10px 0px 0px;
+}
+
+.lh-1-5em {
+  line-height: 1.5em;
 }
 
 .best-seller-hint,
