@@ -154,8 +154,9 @@
                                 </div>
 
                                 <div class="color-selector mt-20 m-5 mb-10">
-                                    <label class="m-5 flex align-items pb-7" for="product-color">Color:<p lang="ar"
-                                            id="product-color">
+                                    <label class="m-5 flex align-items pb-7" for="product-color">
+                                        <p>Color:</p>
+                                        <p lang="ar" id="product-color">
                                         <div id="hint" class="hint-text"></div>
                                         </p>
                                     </label>
@@ -181,6 +182,26 @@
                                         <h5 class="m-5 flex">piece :</h5>
                                         <p class="" id="piece"></p>
                                     </div>
+                                    <div class="m-5 mb-10 flex">
+                                        <button id="addToCartButton" class="Add-to-Cart">Add
+                                            To Cart
+                                            <i class="bi bi-bag-plus"></i>
+                                        </button>
+                                        <div id="addtofavouritediv" class="flex">
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="m-5 mb-10">
+                                        <button id="shareProductButton" class="Share-Product">
+                                            Copy Link <i class="bi bi-link-45deg"></i>
+                                        </button>
+                                        <div id="copyMessage" style="display: none; color: green; margin-top: 10px;">
+                                            Link
+                                            copied!</div>
+                                    </div>
                                     <div class="mb-5">
                                         <h5 class="m-5 flex mt-10">Details:</h5>
                                         <p lang="ar" class="m-5 line-height-30" id="product-details"></p>
@@ -188,25 +209,7 @@
 
                                 </div>
 
-                                <div class="m-5 mb-10 flex">
-                                    <button id="addToCartButton" class="Add-to-Cart">Add
-                                        To Cart
-                                        <i class="bi bi-bag-plus"></i>
-                                    </button>
-                                    <div id="addtofavouritediv" class="flex">
 
-                                    </div>
-                                </div>
-
-
-
-                                <div class="m-5 mb-10">
-                                    <button id="shareProductButton" class="Share-Product">
-                                        Copy Link <i class="bi bi-link-45deg"></i>
-                                    </button>
-                                    <div id="copyMessage" style="display: none; color: green; margin-top: 10px;">Link
-                                        copied!</div>
-                                </div>
                                 <div class="m-5 mb-10">
                                     <div class="social-share-buttons">
                                         <a id="shareFacebook" class="circle-button facebook hidden" href="#"
@@ -295,11 +298,75 @@
 
                                     //     updateCartCount();
                                     // }
+
+                                    // function addToCart() {
+                                    //     const title = document.getElementById("productTitle").innerText;
+                                    //     const brandName = document.getElementById("BrandName").innerText;
+                                    //     const productPrice = document.getElementById("productPrice").innerText;
+                                    //     const productPriceall = document.getElementById('productPriceall').innerText;
+                                    //     const productSize = document.getElementById("product-Size").innerText;
+                                    //     const productColor = document.getElementById("product-color").innerText;
+                                    //     const productID = document.getElementById("productID").innerText;
+                                    //     const quantity = parseInt(document.getElementById("quantity").value, 10) || 1; // Default to 1 if invalid
+
+                                    //     // Get the reference to the img element
+                                    //     const productImage = document.getElementById('productImage');
+                                    //     const srcValue = productImage.getAttribute('src');
+
+                                    //     // Determine the price to use
+                                    //     const finalPrice = productPriceall.trim() === '' ? productPrice : productPriceall;
+
+                                    //     const newItem = {
+                                    //         id: productID,
+                                    //         brand: brandName,
+                                    //         title: title,
+                                    //         productSize: productSize,
+                                    //         productColor: productColor,
+                                    //         price: finalPrice,
+                                    //         photourl: srcValue,
+                                    //         quantity: 1, // Use the input quantity value
+                                    //         amount: quantity // Initialize amount with the quantity
+                                    //     };
+
+                                    //     // Retrieve cart from local storage or initialize it as an empty array
+                                    //     let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+                                    //     // Check if an item with the same ID, size, and color already exists
+                                    //     const existingItem = cart.find(item =>
+                                    //         item.id === newItem.id &&
+                                    //         item.productSize === newItem.productSize &&
+                                    //         item.productColor === newItem.productColor
+                                    //     );
+
+                                    //     if (existingItem) {
+                                    //         // If the item exists, update its quantity and amount
+                                    //         existingItem.quantity += 1;
+                                    //         existingItem.amount += quantity; // Add the new amount to the existing amount
+
+                                    //     } else {
+                                    //         // If the item doesn't exist, add it as a new item
+                                    //         cart.push(newItem);
+                                    //     }
+
+                                    //     // Store the updated cart back to local storage
+                                    //     localStorage.setItem('cart', JSON.stringify(cart));
+
+                                    //     // Change button text and add a message using SweetAlert
+                                    //     Swal.fire({
+                                    //         icon: 'success',
+                                    //         title: 'Added to Cart',
+                                    //         showConfirmButton: false,
+                                    //         timer: 1500 // Close the alert after 1.5 seconds
+                                    //     });
+
+                                    //     // Update the cart count or any relevant UI updates
+                                    //     updateCartCount();
+                                    // }
+
                                     function addToCart() {
                                         const title = document.getElementById("productTitle").innerText;
                                         const brandName = document.getElementById("BrandName").innerText;
-                                        const productPrice = document.getElementById("productPrice").innerText;
-                                        const productPriceall = document.getElementById('productPriceall').innerText;
+                                        const productPriceall = document.getElementById("productPriceall").innerText;
                                         const productSize = document.getElementById("product-Size").innerText;
                                         const productColor = document.getElementById("product-color").innerText;
                                         const productID = document.getElementById("productID").innerText;
@@ -309,8 +376,8 @@
                                         const productImage = document.getElementById('productImage');
                                         const srcValue = productImage.getAttribute('src');
 
-                                        // Determine the price to use
-                                        const finalPrice = productPriceall.trim() === '' ? productPrice : productPriceall;
+                                        // Extract numeric value from productPriceall and convert to float
+                                        const finalPrice = parseFloat(productPriceall.replace(/[^0-9.]/g, ''));
 
                                         const newItem = {
                                             id: productID,
@@ -318,10 +385,10 @@
                                             title: title,
                                             productSize: productSize,
                                             productColor: productColor,
-                                            price: finalPrice,
+                                            price: `${finalPrice} EGP`, // Format the total price
                                             photourl: srcValue,
-                                            quantity: 1, // Use the input quantity value
-                                            amount: quantity // Initialize amount with the quantity
+                                            quantity: quantity,
+                                            amount: quantity // Tracks the total quantity
                                         };
 
                                         // Retrieve cart from local storage or initialize it as an empty array
@@ -335,9 +402,13 @@
                                         );
 
                                         if (existingItem) {
-                                            // If the item exists, update its quantity and amount
-                                            existingItem.quantity += 1;
-                                            existingItem.amount += quantity; // Add the new amount to the existing amount
+                                            // If the item exists, update its properties
+                                            existingItem.quantity += quantity;
+                                            existingItem.amount += quantity;
+
+                                            // Extract numeric value of the existing price
+                                            const existingPrice = parseFloat(existingItem.price.replace(/[^0-9.]/g, ''));
+                                            existingItem.price = `${(existingPrice + finalPrice).toFixed(2)} EGP`;
                                         } else {
                                             // If the item doesn't exist, add it as a new item
                                             cart.push(newItem);
