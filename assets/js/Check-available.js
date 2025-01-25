@@ -43,34 +43,32 @@ document.addEventListener("DOMContentLoaded", () => {
     requestedQuantity,
     callback
   ) {
-    fetch(`${url}/Stores/${uid}/Products/${itemId}.json`)
-      .then((response) => response.json())
-      .then((productsData) => {
-        if (
-          productsData &&
-          productsData.sizes &&
-          productsData.sizes[productSize] &&
-          productsData.sizes[productSize][productColor]
-        ) {
-          const availableQty = parseInt(
-            productsData.sizes[productSize][productColor].qty,
-            10
-          );
-          let validQuantity = requestedQuantity;
-
-          if (requestedQuantity > availableQty) {
-            validQuantity = availableQty; // Adjust to available stock
-          }
-
-          callback(true, validQuantity); // Call the callback with valid quantity
-        } else {
-          callback(false, 0); // Item not found or unavailable
-        }
-      })
-      .catch((error) => {
-        console.error("Error checking availability:", error);
-        callback(false, 0); // Error
-      });
+    // fetch(`${url}/Stores/${uid}/Products/${itemId}.json`)
+    //   .then((response) => response.json())
+    //   .then((productsData) => {
+    //     if (
+    //       productsData &&
+    //       productsData.sizes &&
+    //       productsData.sizes[productSize] &&
+    //       productsData.sizes[productSize][productColor]
+    //     ) {
+    //       const availableQty = parseInt(
+    //         productsData.sizes[productSize][productColor].qty,
+    //         10
+    //       );
+    //       let validQuantity = requestedQuantity;
+    //       if (requestedQuantity > availableQty) {
+    //         validQuantity = availableQty; // Adjust to available stock
+    //       }
+    //       callback(true, validQuantity); // Call the callback with valid quantity
+    //     } else {
+    //       callback(false, 0); // Item not found or unavailable
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error checking availability:", error);
+    //     callback(false, 0); // Error
+    //   });
   }
 
   // Populate cart items and handle adjustments

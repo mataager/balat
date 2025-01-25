@@ -24,7 +24,7 @@
     <!-- 
     - favicon
   -->
-    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="shortcut icon" href="./favicon.jpg" type="image/svg+xml">
 
     <!-- 
     - custom css link
@@ -39,7 +39,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&amp;family=Roboto:wght@400;500;700&amp;display=swap"
         rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./assets/js/check-auth-user.js"></script>
@@ -52,7 +53,7 @@
 
 </head>
 <header>
-    <div class="logo"><a href="#" class="logo"onclick="changeFrameSrc('index.html')">
+    <div class="logo"><a href="#" class="logo" onclick="changeFrameSrc('index.html')">
             <img src="./assets/images/iicon.svg" width="160" height="50" alt="">
         </a></div>
 
@@ -77,7 +78,7 @@
 </header>
 <main>
     <div class="preloader" id="preloader">
-        <img src="favicon.png" alt="Your Image" width="40" height="40">
+        <img src="favicon.jpg" alt="Your Image" width="40" height="40">
         <div class="loader"></div>
     </div>
 
@@ -150,157 +151,157 @@
 
                                     // Function to check availability from Firebase database
 
-                                    function checkAvailability(itemId, productSize, productColor, requestedQuantity, callback) {
-                                        // Fetch the product data from Firebase database
-                                        fetch(`${url}/Stores/${uid}/Products/${itemId}.json`)
-                                            .then(response => response.json())
-                                            .then(productsData => {
-                                                let itemFound = false;
-                                                let availableQty = 0;
+                                    // function checkAvailability(itemId, productSize, productColor, requestedQuantity, callback) {
+                                    //     // Fetch the product data from Firebase database
+                                    //     fetch(`${url}/Stores/${uid}/Products/${itemId}.json`)
+                                    //         .then(response => response.json())
+                                    //         .then(productsData => {
+                                    //             let itemFound = false;
+                                    //             let availableQty = 0;
 
-                                                // Loop through the product data to find the correct item
-                                                for (const key in productsData.sizes) {
-                                                    if (key === productSize) {
-                                                        const sizeData = productsData.sizes[key];
-                                                        if (sizeData[productColor]) {
-                                                            const colorData = sizeData[productColor];
-                                                            availableQty = parseInt(colorData.qty, 10); // Get the available quantity
-                                                            const colorImage = colorData.img1 || productsData["product-photo"]; // Use color image or fallback to main product photo
+                                    //             // Loop through the product data to find the correct item
+                                    //             for (const key in productsData.sizes) {
+                                    //                 if (key === productSize) {
+                                    //                     const sizeData = productsData.sizes[key];
+                                    //                     if (sizeData[productColor]) {
+                                    //                         const colorData = sizeData[productColor];
+                                    //                         availableQty = parseInt(colorData.qty, 10); // Get the available quantity
+                                    //                         const colorImage = colorData.img1 || productsData["product-photo"]; // Use color image or fallback to main product photo
 
-                                                            itemFound = true;
+                                    //                         itemFound = true;
 
-                                                            // Check if the requested quantity is available
-                                                            if (requestedQuantity <= availableQty && requestedQuantity > 0) {
-                                                                callback(true, availableQty); // Proceed if available
-                                                            } else {
-                                                                // Insufficient stock, update to the available quantity in local storage
-                                                                Swal.fire({
-                                                                    icon: "warning",
-                                                                    html: `<div style="display: flex; align-items: center; gap: 10px;">
-                                        <img src="${colorImage}" alt="${productsData["product-title"]}" 
-                                            style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;" />
-                                        <span>Only ${availableQty} items available of this product</span>
-                                      </div>`,
-                                                                }).then(() => {
-                                                                    // Update the cart locally to the available quantity
-                                                                    updateLocalDbItemQuantity(itemId, availableQty);
-                                                                });
+                                    //                         // Check if the requested quantity is available
+                                    //                         if (requestedQuantity <= availableQty && requestedQuantity > 0) {
+                                    //                             callback(true, availableQty); // Proceed if available
+                                    //                         } else {
+                                    //                             // Insufficient stock, update to the available quantity in local storage
+                                    //                             Swal.fire({
+                                    //                                 icon: "warning",
+                                    //                                 html: `<div style="display: flex; align-items: center; gap: 10px;">
+                                    //     <img src="${colorImage}" alt="${productsData["product-title"]}" 
+                                    //         style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;" />
+                                    //     <span>Only ${availableQty} items available of this product</span>
+                                    //   </div>`,
+                                    //                             }).then(() => {
+                                    //                                 // Update the cart locally to the available quantity
+                                    //                                 updateLocalDbItemQuantity(itemId, availableQty);
+                                    //                             });
 
-                                                                callback(false, availableQty); // Insufficient stock, update local DB
-                                                            }
+                                    //                             callback(false, availableQty); // Insufficient stock, update local DB
+                                    //                         }
 
-                                                            break;
-                                                        }
-                                                    }
-                                                }
+                                    //                         break;
+                                    //                     }
+                                    //                 }
+                                    //             }
 
-                                                if (!itemFound) {
-                                                    Swal.fire({
-                                                        icon: "error",
-                                                        title: "Item Not Found",
-                                                        text: "This item is no longer available.",
-                                                    });
-                                                    callback(false, availableQty); // Item not found
-                                                }
-                                            })
-                                            .catch(error => {
-                                                console.error("Error checking availability:", error);
-                                                Swal.fire({
-                                                    icon: "error",
-                                                    title: "Error",
-                                                    text: "There was an error checking availability. Please try again later.",
-                                                });
-                                                callback(false, 0); // Error
-                                            });
-                                    }
+                                    //             if (!itemFound) {
+                                    //                 Swal.fire({
+                                    //                     icon: "error",
+                                    //                     title: "Item Not Found",
+                                    //                     text: "This item is no longer available.",
+                                    //                 });
+                                    //                 callback(false, availableQty); // Item not found
+                                    //             }
+                                    //         })
+                                    //         .catch(error => {
+                                    //             console.error("Error checking availability:", error);
+                                    //             Swal.fire({
+                                    //                 icon: "error",
+                                    //                 title: "Error",
+                                    //                 text: "There was an error checking availability. Please try again later.",
+                                    //             });
+                                    //             callback(false, 0); // Error
+                                    //         });
+                                    // }
 
 
-                                    function checkAndUpdateQuantities() {
-                                        cart.forEach((item) => {
-                                            checkAvailability(item.id, item.productSize, item.productColor, item.quantity, (isAvailable, availableQty) => {
-                                                if (!isAvailable) {
-                                                    // If not available, update the local storage item quantity
-                                                    updateLocalDbItemQuantity(item.id, availableQty);
-                                                }
-                                            });
-                                        });
-                                    }
+                                    // function checkAndUpdateQuantities() {
+                                    //     cart.forEach((item) => {
+                                    //         checkAvailability(item.id, item.productSize, item.productColor, item.quantity, (isAvailable, availableQty) => {
+                                    //             if (!isAvailable) {
+                                    //                 // If not available, update the local storage item quantity
+                                    //                 updateLocalDbItemQuantity(item.id, availableQty);
+                                    //             }
+                                    //         });
+                                    //     });
+                                    // }
 
-                                    // Function to update quantity in the cart
-                                    function updateQuantity(index, increment) {
-                                        const item = cart[index];
+                                    // // Function to update quantity in the cart
+                                    // function updateQuantity(index, increment) {
+                                    //     const item = cart[index];
 
-                                        // Determine the requested quantity after increment or decrement
-                                        const requestedQuantity = item.quantity + increment;
+                                    //     // Determine the requested quantity after increment or decrement
+                                    //     const requestedQuantity = item.quantity + increment;
 
-                                        // Ensure the requested quantity is never less than 1
-                                        if (requestedQuantity < 1) {
-                                            return; // Prevent decrement below 1
-                                        }
+                                    //     // Ensure the requested quantity is never less than 1
+                                    //     if (requestedQuantity < 1) {
+                                    //         return; // Prevent decrement below 1
+                                    //     }
 
-                                        // Check availability based on the updated requested quantity
-                                        checkAvailability(item.id, item.productSize, item.productColor, requestedQuantity, (isAvailable, availableQty) => {
-                                            if (isAvailable) {
-                                                // If the item is available and stock is sufficient, update the cart
-                                                item.quantity = requestedQuantity; // Update quantity based on the requested quantity
-                                                cart[index] = item;
+                                    //     // Check availability based on the updated requested quantity
+                                    //     checkAvailability(item.id, item.productSize, item.productColor, requestedQuantity, (isAvailable, availableQty) => {
+                                    //         if (isAvailable) {
+                                    //             // If the item is available and stock is sufficient, update the cart
+                                    //             item.quantity = requestedQuantity; // Update quantity based on the requested quantity
+                                    //             cart[index] = item;
 
-                                                // Update local storage
-                                                localStorage.setItem("cart", JSON.stringify(cart));
+                                    //             // Update local storage
+                                    //             localStorage.setItem("cart", JSON.stringify(cart));
 
-                                                // Update UI
-                                                const quantitySpan = document.querySelector(`#qty-${item.id}`);
-                                                const priceSpan = document.querySelector(`#price-${item.id}`);
-                                                quantitySpan.textContent = `Qty: ${item.quantity}`;
-                                                priceSpan.textContent = `${(parseFloat(item.price.replace(" EGP", "")) * item.quantity).toFixed(2)} EGP`;
+                                    //             // Update UI
+                                    //             const quantitySpan = document.querySelector(`#qty-${item.id}`);
+                                    //             const priceSpan = document.querySelector(`#price-${item.id}`);
+                                    //             quantitySpan.textContent = `Qty: ${item.quantity}`;
+                                    //             priceSpan.textContent = `${(parseFloat(item.price.replace(" EGP", "")) * item.quantity).toFixed(2)} EGP`;
 
-                                                // Refresh total amount
-                                                updateTotalAmount();
-                                                location.reload(); // Reload to reflect changes
-                                            }
-                                        });
+                                    //             // Refresh total amount
+                                    //             updateTotalAmount();
+                                    //             location.reload(); // Reload to reflect changes
+                                    //         }
+                                    //     });
 
-                                    }
+                                    // }
 
-                                    // Function to update item quantity in local storage
-                                    function updateLocalDbItemQuantity(itemId, newQuantity) {
-                                        // Find the item in local cart by id and update it
+                                    // // Function to update item quantity in local storage
+                                    // function updateLocalDbItemQuantity(itemId, newQuantity) {
+                                    //     // Find the item in local cart by id and update it
 
-                                        const itemIndex = cart.findIndex(item => item.id === itemId);
-                                        if (itemIndex !== -1) {
-                                            // Check if the new quantity is less than the current quantity
-                                            if (newQuantity < cart[itemIndex].quantity) {
-                                                // Update the quantity to the new allowed quantity
-                                                cart[itemIndex].quantity = newQuantity;
-                                            }
+                                    //     const itemIndex = cart.findIndex(item => item.id === itemId);
+                                    //     if (itemIndex !== -1) {
+                                    //         // Check if the new quantity is less than the current quantity
+                                    //         if (newQuantity < cart[itemIndex].quantity) {
+                                    //             // Update the quantity to the new allowed quantity
+                                    //             cart[itemIndex].quantity = newQuantity;
+                                    //         }
 
-                                            // Update the cart in local storage
-                                            localStorage.setItem("cart", JSON.stringify(cart));
+                                    //         // Update the cart in local storage
+                                    //         localStorage.setItem("cart", JSON.stringify(cart));
 
-                                            // Optionally, update the UI immediately
-                                            const quantitySpan = document.querySelector(`#qty-${itemId}`);
-                                            const priceSpan = document.querySelector(`#price-${itemId}`);
-                                            if (quantitySpan) {
-                                                quantitySpan.textContent = `Qty: ${cart[itemIndex].quantity}`;
-                                            }
-                                            if (priceSpan) {
-                                                priceSpan.textContent = `${(parseFloat(cart[itemIndex].price.replace(" EGP", "")) * cart[itemIndex].quantity).toFixed(2)} EGP`;
-                                            }
-                                        }
-                                    }
-                                    // Function to update the total amount
-                                    // function updateTotalAmount() {
-                                    //     totalAmount = cart.reduce((acc, item) => acc + parseFloat(item.price.replace(" EGP", "")) * item.quantity, 0);
-                                    //     const totalAmountDiv = document.getElementById("total-cart-amount");
-                                    //     if (totalAmountDiv) {
-                                    //         totalAmountDiv.innerText = `Total : ${totalAmount.toFixed(2)} EGP`;
+                                    //         // Optionally, update the UI immediately
+                                    //         const quantitySpan = document.querySelector(`#qty-${itemId}`);
+                                    //         const priceSpan = document.querySelector(`#price-${itemId}`);
+                                    //         if (quantitySpan) {
+                                    //             quantitySpan.textContent = `Qty: ${cart[itemIndex].quantity}`;
+                                    //         }
+                                    //         if (priceSpan) {
+                                    //             priceSpan.textContent = `${(parseFloat(cart[itemIndex].price.replace(" EGP", "")) * cart[itemIndex].quantity).toFixed(2)} EGP`;
+                                    //         }
                                     //     }
                                     // }
+                                    // // Function to update the total amount
+                                    // // function updateTotalAmount() {
+                                    // //     totalAmount = cart.reduce((acc, item) => acc + parseFloat(item.price.replace(" EGP", "")) * item.quantity, 0);
+                                    // //     const totalAmountDiv = document.getElementById("total-cart-amount");
+                                    // //     if (totalAmountDiv) {
+                                    // //         totalAmountDiv.innerText = `Total : ${totalAmount.toFixed(2)} EGP`;
+                                    // //     }
+                                    // // }
                                     function updateTotalAmount() {
                                         // Calculate total amount from cart array
                                         totalAmount = cart.reduce((acc, item) => {
                                             const itemPrice = parseFloat(item.price.replace(" EGP", "")) || 0;
-                                            return acc + itemPrice * item.quantity;
+                                            return acc + itemPrice;
                                         }, 0);
 
                                         // Update `#total-cart-amount` element
@@ -341,10 +342,10 @@
                                             textDiv.classList.add("Product-record");
                                             textDiv.innerHTML = `
                                                                             <h5 class="pointer" onclick="brand('${item.brand}')">${item.brand}</h5>
-                                                                            <p class="cart-font-smaller">${item.title}</p>
+                                                                            <p class="cart-font-smaller ar-txt f500">${item.title}</p>
                                                                             <p>Size: ${item.productSize}</p>
                                                                             <p>Color: ${item.productColor}</p>
-                                                                            <p id="price-${item.id}">${(parseFloat(item.price.replace(" EGP", "")) * item.quantity).toFixed(2)} EGP</p>
+                                                                            <p id="price-${item.id}">${(parseFloat(item.price.replace(" EGP", "")))} EGP</p>
                                                                             <p id="qty-${item.id}">Qty: ${item.quantity}</p>
                                                                         `;
                                             itemDetailsDiv.appendChild(textDiv);
@@ -357,17 +358,17 @@
                                             controlsDiv.style.alignItems = "center"; // Align buttons vertically
                                             controlsDiv.style.justifyContent = "center"; // Center the buttons in the div
 
-                                            // Increment Button
-                                            const incrementBtn = document.createElement("i");
-                                            incrementBtn.className = "bi-plus-circle i-cart";
-                                            incrementBtn.style.cursor = "pointer";
-                                            incrementBtn.onclick = () => updateQuantity(index, 1); // Increment quantity
+                                            // // Increment Button
+                                            // const incrementBtn = document.createElement("i");
+                                            // incrementBtn.className = "bi-plus-circle i-cart";
+                                            // incrementBtn.style.cursor = "pointer";
+                                            // incrementBtn.onclick = () => updateQuantity(index, 1); // Increment quantity
 
-                                            // Decrement Button
-                                            const decrementBtn = document.createElement("i");
-                                            decrementBtn.className = "bi-dash-circle i-cart";
-                                            decrementBtn.style.cursor = "pointer";
-                                            decrementBtn.onclick = () => updateQuantity(index, -1); // Decrement quantity
+                                            // // Decrement Button
+                                            // const decrementBtn = document.createElement("i");
+                                            // decrementBtn.className = "bi-dash-circle i-cart";
+                                            // decrementBtn.style.cursor = "pointer";
+                                            // decrementBtn.onclick = () => updateQuantity(index, -1); // Decrement quantity
 
                                             // Delete Button
                                             const deleteIcon = document.createElement("i");
@@ -382,8 +383,8 @@
                                             };
 
                                             // Append all buttons to controlsDiv
-                                            controlsDiv.appendChild(decrementBtn);
-                                            controlsDiv.appendChild(incrementBtn);
+                                            // controlsDiv.appendChild(decrementBtn);
+                                            // controlsDiv.appendChild(incrementBtn);
                                             controlsDiv.appendChild(deleteIcon);
 
                                             // Append controlsDiv to itemDetailsDiv
@@ -628,7 +629,7 @@
                     </script> -->
                 </div>
 
-                <div class="flex center  m-10  height-auto" id="Information">
+                <div class="hidden center  m-10  height-auto" id="Information">
                     <div class="width-90 padding-10 cart-bg over-flow-auto box-with-shadow " id="cartarea">
                         <div class="m-10 flex center align-items">
                             <h3>Shipping Information</h3>

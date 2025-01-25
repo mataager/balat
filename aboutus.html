@@ -1,0 +1,867 @@
+<html lang="en" class="hydrated">
+
+<head>
+    <meta charset="UTF-8">
+    <style data-styles="">
+        ion-icon {
+            visibility: hidden;
+            font-size: 24px;
+            /* Adjust as needed */
+        }
+
+        .hydrated {
+            visibility: inherit
+        }
+
+        .number1-hint {
+            line-height: 1;
+            border: 3px solid;
+            z-index: 20;
+            padding: 15px;
+            border-radius: 50%;
+            background: white;
+            left: -7px;
+            position: absolute;
+            top: -13px;
+        }
+
+        .intro {
+            border-top: 5px solid #647065;
+            background: #f5f5f5;
+            /* Soft background color */
+            padding: 30px;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            /* Soft corners for elegance */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow for depth */
+            max-width: 800px;
+            margin: 50px 30px;
+            /* Center the section */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            position: absolute;
+        }
+
+        .intro:hover {
+            transform: scale(1.02);
+            /* Adds a slight scale on hover */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        h1 .number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #727D73;
+            /* Highlighted color for the number */
+            margin-right: 10px;
+        }
+
+        .highlight {
+            color: #727D73;
+            /* Highlight color for 'Architecture' */
+        }
+
+        p.c3d3d3d {
+            color: #a1a1a1;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .community-btn {
+            padding: 12px 25px;
+            background-color: #727D73;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .community-btn:hover {
+            background-color: #647065;
+            /* Darker shade on hover */
+        }
+
+        .radius10 {
+            border-radius: 10px;
+        }
+
+        .carousel-container {
+            margin: 110px 10px 10px 10px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 80%;
+            overflow: hidden;
+            z-index: -1;
+            display: flex;
+            transition: transform 1s ease-in-out;
+            border-radius: 10px;
+        }
+
+        .carousel {
+            display: flex;
+            height: 100%;
+            width: calc(100% * 5);
+            /* Dynamic width for 5 images */
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Each image takes up the full container width */
+            flex-shrink: 0;
+            /* Prevent images from shrinking */
+        }
+
+        /*  */
+        /* About Us Section */
+        .about-us {
+            margin: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px;
+            background-color: #d9d7d754;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Style for the image slider */
+        /* Style for the custom image slider */
+        /* Style for the custom image slider */
+        .custom-image-slider {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            /* Hides images outside the container */
+        }
+
+        .custom-carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+            /* Ensure the carousel takes full width */
+        }
+
+        .custom-carousel img {
+            width: 100%;
+            /* Ensure each image takes up the full width of the container */
+            height: auto;
+            /* Maintain the image aspect ratio */
+        }
+
+        .custom-carousel-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+        }
+
+        .custom-carousel-dots button {
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            border-radius: 50%;
+            width: 10px;
+            height: 10px;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .custom-carousel-dots button.active {
+            background-color: #ff5733;
+        }
+
+        .custom-carousel-dots button:hover {
+            background-color: rgba(255, 255, 255, 1);
+        }
+
+        /* Text Section */
+
+
+        .text-section h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .text-section p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .learn-more-btn {
+            padding: 12px 25px;
+            background-color: #727D73;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .learn-more-btn:hover {
+            background-color: #647065;
+        }
+
+        .about-content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .lh-1 {
+            line-height: 1.1em;
+        }
+
+        .panner-title {
+            font-size: large;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.4em;
+        }
+
+        /* Slider Styling */
+        .slider-container {
+            position: relative;
+            max-width: 30%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slider-img {
+            min-width: 100%;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        /* Slider Buttons */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 18px;
+        }
+
+        .slider-btn.prev {
+            left: 10px;
+        }
+
+        .slider-btn.next {
+            right: 10px;
+        }
+
+        .slider-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Modal Styling */
+        .modal2 {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .modal-content2 {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 10px;
+        }
+
+        .close-btn2 {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .modal2.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* General Transitions */
+        .hidden {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            transition: all 0.5s ease;
+        }
+
+        /* Button Hover Effect */
+        .aboutus-nav h5 {
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .aboutus-nav h5:hover {
+            background-color: #15171a75;
+            /* Example color */
+            color: #fff;
+        }
+
+        /* Active Nav Item */
+        .aboutus-nav h5.active {
+            background-color: #14181c;
+            /* Example active color */
+            color: #fff;
+        }
+    </style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="store-title"></title>
+    <link rel="shortcut icon" href="./favicon.jpg" type="image/svg+xml">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&amp;family=Roboto:wght@400;500;700&amp;display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/ionicons@5.5.2/dist/css/ionicons.min.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="./assets/js/static.js"></script>
+    <script src="./assets/js/cart-modal.js"></script>
+    <script src="./assets/js/image-error.js"></script>
+    <script src="./assets/js/search-product.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body id="top">
+
+
+    <header>
+        <div class="logo"><a href="#" class="logo" onclick="changeFrameSrc('index.html')">
+                <img src="./assets/images/iicon.svg" width="160" height="50" alt="">
+            </a></div>
+
+        <div class="header-icen-div">
+            <a>
+                <button class="nav-action-btn" onclick="changeFrameSrc('Cart.html')">
+                    <ion-icon name="bag-outline" aria-hidden="true" role="img" class="md hydrated"></ion-icon>
+                    <data class="nav-action-text hidden">Basket: <strong class="cart-amount" id="cart-amount">0.00
+                            EGP</strong></data>
+                    <data id="cartItemCount" class="nav-action-badge" aria-hidden="true">0</data>
+                </button>
+            </a>
+            <a><button class="nav-action-btn" onclick="changeFrameSrc('account.html')">
+                    <ion-icon name="person-outline" role="img" class="md hydrated"
+                        aria-label="person outline"></ion-icon>
+                    <span class="nav-action-text hidden">Account</span>
+                </button>
+            </a>
+        </div>
+
+
+
+    </header>
+    <div class="aboutus-nav">
+        <h5 id="factoriesNav" class="active" onclick="navigateTo('Factories', this)">Factories</h5>
+        <h5 id="catalogNav" onclick="navigateTo('Catalog', this)">Catalog</h5>
+        <h5 id="latestWorkNav" onclick="navigateTo('Latestwork', this)">Latest Works</h5>
+    </div>
+
+    <div id="Factories">
+        <article>
+
+            <section class="about-us center">
+                <div class="about-content flex-direction-column">
+                    <div class="text-section">
+                        <h2>Our Factories</h2>
+                        <p class="lh-1-5em">
+                            At Ideal Stone, we take pride in our state-of-the-art factories, each strategically located
+                            to serve our
+                            customers with the highest quality materials. Explore the locations of our two factories
+                            below.
+                        </p>
+                    </div>
+
+                    <div class="factories">
+                        <!-- Factory 1 -->
+                        <div class="factory">
+                            <h3>Samanod Factory <p class="ar-txt">مصنع سمنود</p>
+                            </h3>
+                            <div class="factories-img-container">
+                                <img class="factories-img" src="./assets/images/samanod.jpg"
+                                    onclick="openGoogleMaps('https://www.google.com/maps?q=30.9690208435059,31.2265224456787')">
+                                <div class="icon-overlay"
+                                    onclick="openGoogleMaps('https://www.google.com/maps?q=30.9690208435059,31.2265224456787')">
+                                    <i class="bi bi-box-arrow-up-right"></i>
+                                </div>
+                            </div>
+
+                            <p class="hidden">
+                                note:
+                            </p>
+                            <a href='https://www.google.com/maps?q=30.9690208435059,31.2265224456787' target="_blank"
+                                class="google-maps-link">
+                                View on Google Maps
+                            </a>
+                        </div>
+
+                        <!-- Factory 2 -->
+                        <div class="factory">
+                            <h3>Gamasa Factory <p class="ar-txt">مصنع جمصه</p>
+                            </h3>
+                            <div class="factories-img-container">
+                                <img class="factories-img" src="./assets/images/gamsa.jpg"
+                                    onclick="openGoogleMaps('https://www.google.com/maps?q=31.4388465881348,31.4759006500244')">
+                                <div class="icon-overlay"
+                                    onclick="openGoogleMaps('https://www.google.com/maps?q=31.4388465881348,31.4759006500244')">
+                                    <i class="bi bi-box-arrow-up-right"></i>
+                                </div>
+                            </div>
+
+                            <p class="hidden">
+                                note:
+                            </p>
+                            <a href='https://www.google.com/maps?q=31.4388465881348,31.4759006500244' target="_blank"
+                                class="google-maps-link">
+                                View on Google Maps
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+        </article>
+    </div>
+    <div id="Catalog" class="hidden">
+        <article>
+            <section class="about-us center">
+                <div class="about-content flex-direction-column">
+                    <div class="text-section">
+                        <div class="flex center align-items">
+                            <h2>Catalogs</h2>
+                        </div>
+
+                        <p class="lh-1-5em">
+                            Discover our dedication to excellence through our comprehensive catalogs, showcasing the
+                            finest materials and innovative
+                            designs from Ideal Stone. Explore the unique craftsmanship of our facilities and gain
+                            insights into the high-quality
+                            products we deliver to our customers. Click below to access and download detailed catalogs
+                            that highlight our journey
+                            and expertise.
+                        </p>
+                    </div>
+
+                    <div class="factories">
+                        <!-- Catalog 1 -->
+                        <div class="factory">
+                            <h5>About Us Catalog</h5>
+                            <div class="factories-img-container">
+                                <img class="factories-img"
+                                    src="https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg"
+                                    onclick="downloadAndOpenCatalog('./assets/pdf/idealabout.pdf')">
+                                <div class="icon-overlay"
+                                    onclick="downloadAndOpenCatalog('./assets/pdf/idealabout.pdf')">
+                                    <i class="bi bi-cloud-download"></i>
+                                </div>
+                            </div>
+                            <a href="./assets/pdf/idealabout.pdf" download target="_blank" class="google-maps-link">
+                                Download <i class="bi bi-cloud-download"></i>
+                            </a>
+                        </div>
+
+                        <!-- Catalog 2 -->
+                        <div class="factory">
+                            <h5>Bazilion Catalog</h5>
+                            <div class="factories-img-container">
+                                <img class="factories-img"
+                                    src="https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg"
+                                    onclick="downloadAndOpenCatalog('./assets/pdf/bazilion.pdf')">
+                                <div class="icon-overlay" onclick="downloadAndOpenCatalog('./assets/pdf/bazilion.pdf')">
+                                    <i class="bi bi-cloud-download"></i>
+                                </div>
+                            </div>
+                            <a href="./assets/pdf/bazilion.pdf" download target="_blank" class="google-maps-link">
+                                Download <i class="bi bi-cloud-download"></i>
+                            </a>
+                        </div>
+
+                        <!-- Catalog 3 -->
+                        <div class="factory">
+                            <h5>Latest Work Catalog</h5>
+                            <div class="factories-img-container">
+                                <img class="factories-img"
+                                    src="https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg"
+                                    onclick="downloadAndOpenCatalog('./assets/pdf/latestwork.pdf')">
+                                <div class="icon-overlay"
+                                    onclick="downloadAndOpenCatalog('./assets/pdf/latestwork.pdf')">
+                                    <i class="bi bi-cloud-download"></i>
+                                </div>
+                            </div>
+                            <a href="./assets/pdf/latestwork.pdf" download target="_blank" class="google-maps-link">
+                                Download <i class="bi bi-cloud-download"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </div>
+
+    <div id="Latestwork" class="hidden">
+        <article>
+            <section class="about-us center col-sm-screen">
+                <div class="about-content flex-direction-column">
+                    <div class="text-section">
+                        <h2>Our Latest Works</h2>
+                        <p class="lh-1-5em">
+                            Witness the pinnacle of our expertise through a showcase of our latest projects, crafted
+                            with precision and dedication.
+                            Each piece reflects our commitment to delivering exceptional quality and innovative designs.
+                            Dive into our portfolio to
+                            see how we bring ideas to life with unmatched attention to detail and artistry.
+                        </p>
+                    </div>
+                </div>
+                <div class="slider-container">
+                    <div class="slider">
+                        <img class="slider-img" src="./assets/latestwork/1.jpg" alt="Work 1" onclick="showImage(this)">
+                        <img class="slider-img" src="./assets/latestwork/2.jpg" alt="Work 2" onclick="showImage(this)">
+                        <img class="slider-img" src="./assets/latestwork/3.jpg" alt="Work 3" onclick="showImage(this)">
+                        <img class="slider-img" src="./assets/latestwork/4.jpg" alt="Work 4" onclick="showImage(this)">
+                        <img class="slider-img" src="./assets/latestwork/5.jpg" alt="Work 5" onclick="showImage(this)">
+                        <img class="slider-img" src="./assets/latestwork/6.jpg" alt="Work 6" onclick="showImage(this)">
+                    </div>
+                    <button class="slider-btn prev" onclick="moveSlide(-1)"><i
+                            class="bi bi-arrow-left-circle"></i></button>
+                    <button class="slider-btn next" onclick="moveSlide(1)"><i
+                            class="bi bi-arrow-right-circle"></i></button>
+                </div>
+            </section>
+        </article>
+
+        <!-- Image Viewer Modal -->
+        <div id="imageModal" class="modal modal2">
+            <span class="close-btn2" onclick="closeModal()">&times;</span>
+            <img id="modalImage" class="modal-content2" alt="Enlarged Work">
+        </div>
+    </div>
+
+
+
+
+    <!-- Modal structure -->
+    <!-- <div class="modal">
+
+        <div class="modal-content">
+
+        </div>
+
+
+    </div> -->
+    <div id="modal-fav" class="modal">
+        <div id="modal-fav-content" class="fav-modal-content">
+
+        </div>
+    </div>
+
+    <footer class="footer">
+
+        <div class="footer-top section">
+            <div class="container">
+
+                <div class="footer-brand">
+
+                    <a href="#" class="logo">
+                        <img src="./assets/images/iicon.svg" width="160" height="50" alt="">
+                    </a>
+
+                    <ul class="social-list hidden">
+
+                        <li>
+                            <a href="#" class="social-link">
+                                <ion-icon name="logo-facebook" role="img" class="md hydrated"
+                                    aria-label="logo facebook"></ion-icon>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="social-link">
+                                <ion-icon name="logo-twitter" role="img" class="md hydrated"
+                                    aria-label="logo twitter"></ion-icon>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="social-link">
+                                <ion-icon name="logo-pinterest" role="img" class="md hydrated"
+                                    aria-label="logo pinterest"></ion-icon>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="social-link">
+                                <ion-icon name="logo-linkedin" role="img" class="md hydrated"
+                                    aria-label="logo linkedin"></ion-icon>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <div class="footer-end flex space-around">
+
+                    <ul class="footer-list">
+
+                        <li>
+                            <p class="footer-list-title">Contact Us</p>
+                        </li>
+
+                        <li>
+                            <address class="footer-link hidden">
+                                <ion-icon name="location" role="img" class="md hydrated"
+                                    aria-label="location"></ion-icon>
+
+                                <span class="footer-link-text">
+                                    type any addrress
+                                </span>
+                            </address>
+                        </li>
+
+                        <li>
+                            <a href="tel:" id="store-call" class="footer-link">
+                                <ion-icon name="call" role="img" class="md hydrated" aria-label="call"></ion-icon>
+                                <span id="store-number" class="footer-link-text"></span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="mailto:" id="store-email-link" class="footer-link">
+                                <ion-icon name="mail" role="img" class="md hydrated" aria-label="mail"></ion-icon>
+                                <span id="store-email" class="footer-link-text"></span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="footer-link" id="report-bug-btn">
+                                <ion-icon name="bug"></ion-icon>
+                                <span class="footer-link-text">Report a problem or a bug</span>
+                            </a>
+                        </li>
+
+
+
+
+                    </ul>
+
+
+
+                    <div class="footer-list">
+
+                        <p class="footer-list-title">Newsletter</p>
+
+                        <p class="newsletter-text">
+                            Send us your email to keeping up with our latest updates..
+                        </p>
+
+                        <form action="" class="newsletter-form">
+                            <input type="email" name="email" required="" placeholder="Email Address"
+                                class="newsletter-input border-r5">
+
+                            <button type="submit" class="btn2 btn-primary ">Subscribe</button>
+                        </form>
+
+                    </div>
+
+                    <ul class="footer-list">
+                        <p class="footer-list-title">Matager</p>
+                        <li>
+                            <a href="https://matager.online/PrivacyPolicy.html" class="footer-link">
+                                <span class="footer-link-text">privacy policy</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://matager.online/Termsofservice.html" class="footer-link">
+                                <span class="footer-link-text">Terms of service</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="flex center">
+            <a href="https://matager.online" target="_blank">
+                <img src="./assets/images/powerd by matager black.svg" width="100px">
+            </a>
+        </div>
+
+
+
+    </footer>
+    <a href="#top" class="go-top-btn" data-go-top="">
+        <ion-icon name="arrow-up-outline" role="img" class="md hydrated" aria-label="arrow up outline"></ion-icon>
+    </a>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="./assets/js/store-contact.js"></script>
+    <script src="./assets/js/report.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Select all navbar list items
+            const navbarItems = document.querySelectorAll('.navbar-list .navbar-item');
+            const overlay = document.querySelector("[data-overlay]");
+            const cartButton = document.querySelector('.nav-action-btn ion-icon[name="bag-outline"]').parentNode;
+
+            // Function to remove 'active' class from the navbar
+            function removeActiveClass() {
+                const navbar = document.querySelector('.navbar');
+                if (navbar.classList.contains('active')) {
+                    navbar.classList.remove('active');
+                    overlay.classList.remove('active');
+
+                }
+            }
+
+            // Attach click event listeners to each navbar item
+            navbarItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    removeActiveClass();
+                });
+            });
+
+
+
+            cartButton.addEventListener('click', function () {
+                removeActiveClass();
+            });
+        });
+        function scrollToProducts() {
+            const element = document.getElementById('product-overview');
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        function openGoogleMaps(url) {
+            window.open(url, '_blank');
+        }
+        function downloadAndOpenCatalog(pdfPath) {
+            // Trigger the download
+            const anchor = document.createElement('a');
+            anchor.href = pdfPath;
+            anchor.download = pdfPath.split('/').pop(); // Extracts the file name
+            anchor.click();
+
+            // Open the PDF in a new tab
+            window.open(pdfPath, '_blank');
+        }
+
+        let currentSlide = 0;
+
+        // Function to move the slide
+        function moveSlide(direction) {
+            const slider = document.querySelector('.slider');
+            const slides = document.querySelectorAll('.slider-img');
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            const offset = -currentSlide * 100; // Move by 100% for each slide
+            slider.style.transform = `translateX(${offset}%)`;
+        }
+
+        // Function to show the image in the modal
+        function showImage(imageElement) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = imageElement.src;
+            modal.classList.add('show');
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById('imageModal').classList.remove('show');;
+        }
+
+    </script>
+    <script>
+        const navItems = document.querySelectorAll(".aboutus-nav h5");
+        const sections = document.querySelectorAll("#Factories, #Catalog, #Latestwork");
+
+        navItems.forEach((navItem, index) => {
+            navItem.addEventListener("click", () => {
+                // Remove 'active' class from all nav items
+                navItems.forEach(item => item.classList.remove("active"));
+                // Add 'active' class to the clicked nav item
+                navItem.classList.add("active");
+
+                // Hide all sections
+                sections.forEach(section => {
+                    section.classList.remove("visible");
+                    section.classList.add("hidden");
+                });
+
+                // Show the selected section
+                sections[index].classList.remove("hidden");
+                sections[index].classList.add("visible");
+            });
+        });
+
+    </script>
+    <script src="./assets/js/update-cart-amont.js"></script>
+    <script src="./assets/js/route.js"></script>
+    <script src="./assets/js/all.js"></script>
+
+</body>
+
+</html>
