@@ -134,13 +134,27 @@
                     <div class="m-10 flex center">
                         <h3>Shopping Cart</h3>
                     </div>
-                    <div class="m-10 cart-bg over-flow-auto box-with-shadow flex-direction-column available-height"
+                    <div class="m-10 cart-bg  box-with-shadow flex-direction-column available-height flex center"
                         id="cartarea">
                         <div class="flex center">
+                            <div class="over-flow-auto height-400">
+                                <ul id="cart-items">
 
-                            <ul id="cart-items">
 
-                            </ul>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="mt-20">
+                                    <h5 class="flex center">Address</h5>
+                                    <div class="address-area" id="address-area">
+
+                                    </div>
+                                </div>
+                                <div class="flex center total-cart-div">
+                                    <h5 id="total-cart-amount"></h5>
+                                </div>
+
+                            </div>
 
                             <script>
                                 document.addEventListener("DOMContentLoaded", () => {
@@ -228,40 +242,39 @@
                                     // }
 
                                     // // Function to update quantity in the cart
-                                    // function updateQuantity(index, increment) {
-                                    //     const item = cart[index];
+                                    function updateQuantity(index, increment) {
+                                        const item = cart[index];
 
-                                    //     // Determine the requested quantity after increment or decrement
-                                    //     const requestedQuantity = item.quantity + increment;
+                                        // Determine the requested quantity after increment or decrement
+                                        const requestedQuantity = item.quantity + increment;
 
-                                    //     // Ensure the requested quantity is never less than 1
-                                    //     if (requestedQuantity < 1) {
-                                    //         return; // Prevent decrement below 1
-                                    //     }
+                                        // Ensure the requested quantity is never less than 1
+                                        if (requestedQuantity < 1) {
+                                            return; // Prevent decrement below 1
+                                        }
 
-                                    //     // Check availability based on the updated requested quantity
-                                    //     checkAvailability(item.id, item.productSize, item.productColor, requestedQuantity, (isAvailable, availableQty) => {
-                                    //         if (isAvailable) {
-                                    //             // If the item is available and stock is sufficient, update the cart
-                                    //             item.quantity = requestedQuantity; // Update quantity based on the requested quantity
-                                    //             cart[index] = item;
+                                        // Check availability based on the updated requested quantity
 
-                                    //             // Update local storage
-                                    //             localStorage.setItem("cart", JSON.stringify(cart));
+                                        // If the item is available and stock is sufficient, update the cart
+                                        item.quantity = requestedQuantity; // Update quantity based on the requested quantity
+                                        item.amount = requestedQuantity;
+                                        cart[index] = item;
 
-                                    //             // Update UI
-                                    //             const quantitySpan = document.querySelector(`#qty-${item.id}`);
-                                    //             const priceSpan = document.querySelector(`#price-${item.id}`);
-                                    //             quantitySpan.textContent = `Qty: ${item.quantity}`;
-                                    //             priceSpan.textContent = `${(parseFloat(item.price.replace(" EGP", "")) * item.quantity).toFixed(2)} EGP`;
+                                        // Update local storage
+                                        localStorage.setItem("cart", JSON.stringify(cart));
 
-                                    //             // Refresh total amount
-                                    //             updateTotalAmount();
-                                    //             location.reload(); // Reload to reflect changes
-                                    //         }
-                                    //     });
+                                        // Update UI
+                                        const quantitySpan = document.querySelector(`#qty-${item.id}`);
+                                        const priceSpan = document.querySelector(`#price-${item.id}`);
+                                        quantitySpan.textContent = `Qty: ${item.quantity}`;
+                                        priceSpan.textContent = `${(parseFloat(item.price.replace(" EGP", "")) * item.quantity).toFixed(2)} EGP`;
 
-                                    // }
+                                        // Refresh total amount
+                                        updateTotalAmount();
+                                        location.reload(); // Reload to reflect changes
+                                    };
+
+
 
                                     // // Function to update item quantity in local storage
                                     // function updateLocalDbItemQuantity(itemId, newQuantity) {
@@ -297,12 +310,15 @@
                                     // //         totalAmountDiv.innerText = `Total : ${totalAmount.toFixed(2)} EGP`;
                                     // //     }
                                     // // }
+
                                     function updateTotalAmount() {
                                         // Calculate total amount from cart array
                                         totalAmount = cart.reduce((acc, item) => {
                                             const itemPrice = parseFloat(item.price.replace(" EGP", "")) || 0;
+                                            const itemQty = parseFloat(item.quantity);
                                             return acc + itemPrice;
                                         }, 0);
+
 
                                         // Update `#total-cart-amount` element
                                         const totalAmountDiv = document.getElementById("total-cart-amount");
@@ -326,13 +342,13 @@
 
                                             // Item details
                                             const itemDetailsDiv = document.createElement("div");
-                                            itemDetailsDiv.classList.add("flex", "center", "align-items");
+                                            itemDetailsDiv.classList.add("flex", "center", "align-items","cart-item-sm");
 
                                             // Image
                                             const imageDiv = document.createElement("div");
                                             const itemImage = document.createElement("img");
                                             itemImage.src = item.photourl;
-                                            itemImage.classList.add("pointer");
+                                            itemImage.classList.add("pointer", "image-cart-sm");
                                             itemImage.onclick = () => productDetails(item.id);
                                             imageDiv.appendChild(itemImage);
                                             itemDetailsDiv.appendChild(imageDiv);
@@ -358,17 +374,17 @@
                                             controlsDiv.style.alignItems = "center"; // Align buttons vertically
                                             controlsDiv.style.justifyContent = "center"; // Center the buttons in the div
 
-                                            // // Increment Button
-                                            // const incrementBtn = document.createElement("i");
-                                            // incrementBtn.className = "bi-plus-circle i-cart";
-                                            // incrementBtn.style.cursor = "pointer";
-                                            // incrementBtn.onclick = () => updateQuantity(index, 1); // Increment quantity
+                                            // Increment Button
+                                            const incrementBtn = document.createElement("i");
+                                            incrementBtn.className = "bi-plus-circle i-cart";
+                                            incrementBtn.style.cursor = "pointer";
+                                            incrementBtn.onclick = () => updateQuantity(index, 1); // Increment quantity
 
-                                            // // Decrement Button
-                                            // const decrementBtn = document.createElement("i");
-                                            // decrementBtn.className = "bi-dash-circle i-cart";
-                                            // decrementBtn.style.cursor = "pointer";
-                                            // decrementBtn.onclick = () => updateQuantity(index, -1); // Decrement quantity
+                                            // Decrement Button
+                                            const decrementBtn = document.createElement("i");
+                                            decrementBtn.className = "bi-dash-circle i-cart";
+                                            decrementBtn.style.cursor = "pointer";
+                                            decrementBtn.onclick = () => updateQuantity(index, -1); // Decrement quantity
 
                                             // Delete Button
                                             const deleteIcon = document.createElement("i");
@@ -383,8 +399,8 @@
                                             };
 
                                             // Append all buttons to controlsDiv
-                                            // controlsDiv.appendChild(decrementBtn);
-                                            // controlsDiv.appendChild(incrementBtn);
+                                            controlsDiv.appendChild(decrementBtn);
+                                            controlsDiv.appendChild(incrementBtn);
                                             controlsDiv.appendChild(deleteIcon);
 
                                             // Append controlsDiv to itemDetailsDiv
@@ -418,9 +434,7 @@
 
 
                     </div>
-                    <div class="m-10 flex center">
-                        <h5 id="total-cart-amount"></h5>
-                    </div>
+
 
 
                 </div>
@@ -521,7 +535,7 @@
                                     class="input-cart">
                             </div>
                         </div> -->
-                        <div id="address-area" class="">
+                        <div class="address-area" id="address-area">
 
                         </div>
                         <!-- <div class="">
@@ -874,6 +888,7 @@
 
     </script>
 
+
     </section>
 
 
@@ -884,10 +899,8 @@
 <a href="#top" class="go-top-btn" data-go-top="">
     <ion-icon name="arrow-up-outline" role="img" class="md hydrated" aria-label="arrow up outline"></ion-icon>
 </a>
-
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule="" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
 <script>
     function showPreloader() {
         document.getElementById('preloader').classList.remove('hidden');
