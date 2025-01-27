@@ -145,6 +145,10 @@ function renderAddresses(addresses) {
     }
 
     div.innerHTML = `
+    <button class="toggle-btn" onclick="toggleAddress(this, event)">
+    <p>show more</p>
+      <i class="fa-regular fa-circle-right"></i>
+    </button>
       <div class="details-row">
         <div class="detail-group">
           <h6>Governorate</h6>
@@ -184,6 +188,27 @@ function renderAddresses(addresses) {
     // localStorage.setItem("Address", JSON.stringify(firstAddress));
     localStorage.setItem("Address", firstAddress);
     updateShippingFees();
+  }
+}
+// Toggle Address Functionality
+function toggleAddress(button, event) {
+  // Prevent parent card's click event
+  event.stopPropagation();
+
+  const addressCard = button.closest(".address-card");
+
+  if (!addressCard.classList.contains("expanded")) {
+    // Expand the card
+    const fullHeight = addressCard.scrollHeight; // Get the full height of the content
+    addressCard.style.height = `${fullHeight}px`; // Set the height explicitly
+    addressCard.classList.add("expanded");
+    button.innerHTML = '<p>Hide</p><i class="fa-regular fa-circle-down"></i>';
+  } else {
+    // Collapse the card
+    addressCard.style.height = "85px"; // Set the height to collapsed value
+    addressCard.classList.remove("expanded");
+    button.innerHTML =
+      '<p>Show More</p><i class="fa-regular fa-circle-right"></i>';
   }
 }
 

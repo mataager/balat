@@ -1713,9 +1713,7 @@ a.footer-link:is(:hover, :focus) {
     margin-bottom: 10px;
   }
 
-  /* .manage-cart-item {
-    flex-direction: column !important;
-  } */
+
 
   .details-row {
     flex-direction: column !important;
@@ -1792,6 +1790,13 @@ a.footer-link:is(:hover, :focus) {
   .image-cart-sm {
     width: 50px !important;
   }
+}
+
+.manage-cart-item {
+  background: #00000014;
+  border-radius: 20px;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
 }
 
 #cart-items h5 {
@@ -2588,25 +2593,21 @@ select {
 .i-cart {
   font-size: small;
   border-radius: 20%;
-  border: 0.5px solid #f2f2f2;
   padding: 5px;
-  margin-left: 25px;
-  background: black;
-  color: white;
-
+  color: #000000;
   width: 30px;
   display: flex;
   height: 30px;
-  cursor: pointer;
   line-height: 0;
   justify-content: center;
   align-items: center;
 }
 
-.i-cart:hover {
+.i-cart:hover,
+.toggle-btn:hover {
+  border-radius: 30px;
   background: #f2f2f2;
   color: black;
-  border: 0.5px solid #000000;
 }
 
 .img-payment {
@@ -4562,6 +4563,7 @@ th {
 }
 
 .details-row {
+  margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -4718,8 +4720,42 @@ th {
   cursor: pointer;
   border: 2px solid #efefef;
   overflow: hidden;
-  height: 65px;
-  margin: 10px 10px 10px 10px;
+  height: 85px;
+  margin: 10px 10px;
+  position: relative;
+  transition: height 0.3s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.address-card.expanded {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-btn {
+  border-radius: 20px;
+  padding: 3px;
+  background: #ddd;
+  gap: 5px;
+  font-size: x-small !important;
+  display: flex;
+  position: absolute;
+  color: rgb(0 0 0 / 88%);
+  top: 5px;
+  right: 10px;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+}
+
+.toggle-btn i {
+  border-radius: 10px;
+  padding: 3px;
+  background: white;
+  transition: transform 0.3s ease;
+}
+
+.toggle-btn p {
+  padding: 3px;
 }
 
 .address-area {
@@ -4729,7 +4765,8 @@ th {
 }
 
 .address-card:hover {
-  border: 2px solid #efefef;
+  transform: scale(1.04);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* payment */
